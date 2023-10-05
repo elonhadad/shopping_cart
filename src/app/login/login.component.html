@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <h2 class="text-center">Login</h2>
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+                <!-- Email input -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" formControlName="email">
+                </div>
+
+                <!-- Password input -->
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" formControlName="password">
+                </div>
+
+                <!-- Error message -->
+                <div class="text-danger mb-3" *ngIf="invalidLogin">Incorrect email or password.</div>
+
+                <button type="submit" class="btn btn-primary mb-3">Login</button>
+
+                <!-- Registration Link -->
+                <div>
+                    Don't have an account? <a routerLink="/registration">Register</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

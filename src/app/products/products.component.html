@@ -1,0 +1,23 @@
+<div class="row product-row">
+    <div class="col-md-3 product-col " *ngFor="let product of products">
+        <div class="card sb-1 product-card">
+            <img [src]="product.imageUrl" class="card-img-top product-image" alt="{{ product.name }}">
+            <div class="feedback text-center" *ngIf="feedbackMessage && currentProduct === product" [ngClass]="{
+                'feedback-add': feedbackMessageType === 'add'
+              }">
+                <p>{{ feedbackMessage }}</p>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <div class="row align-items-center">
+                    <div class="col text-start">
+                        <button class="btn" (click)="addToCart(product)">Add</button>
+                    </div>
+                    <div class="col text-end">
+                        <p class="card-text mb-0">${{ product.price }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+
+        <!-- Hamburger Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/application/products">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/application/cart">Cart</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- Navbar logged in user -->
+    <div *ngIf="loggedInUser" class="username-display ml-auto">
+        Logged in as: <strong>{{ loggedInUser }} </strong>
+        <a href="#" class="ml-2 text-danger" (click)="logout()">Logout</a>
+    </div>
+</nav>
+
+<footer class="bg-dark text-center text-white fixed-bottom">
+    <div class="text-center p-3">
+        © 2023 Copyright: Elon Hadad - BMC Home Test
+    </div>
+</footer>
+
+<router-outlet></router-outlet>

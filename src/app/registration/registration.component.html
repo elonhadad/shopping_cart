@@ -1,0 +1,48 @@
+<div class="container mt-5">
+    <h2 class="text-center">Registration</h2>
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="mt-3">
+                Already have an account? <a routerLink="/login">Log in</a>
+            </div>
+            <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="email" class="form-label"></label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                        <input type="email" class="form-control" id="email" formControlName="email"
+                            placeholder="Email Address">
+                    </div>
+                    <div class="text-danger"
+                        *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">Enter a
+                        valid email.</div>
+                    <div class="text-danger" *ngIf="isUserExist">User already exists!</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label"></label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                        <input type="password" class="form-control" id="password" formControlName="password"
+                            placeholder="Password">
+                    </div>
+                    <div class="text-danger"
+                        *ngIf="registrationForm.get('password')?.hasError('noUppercase') && registrationForm.get('password')?.touched">
+                        Password should contain at least one uppercase letter.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="confirmPassword" class="form-label"></label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                        <input type="password" class="form-control" id="confirmPassword"
+                            formControlName="confirmPassword" placeholder="Confirm Password">
+                    </div>
+                    <div class="text-danger"
+                        *ngIf="registrationForm.errors?.['mismatch'] && registrationForm.get('confirmPassword')?.touched">
+                        Passwords do not match.</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" [disabled]="registrationForm.invalid">Register</button>
+            </form>
+        </div>
+    </div>
+</div>

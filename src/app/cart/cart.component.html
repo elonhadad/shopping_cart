@@ -1,0 +1,50 @@
+<div class="container mt-5">
+    <h2 class="mb-4">Shopping Cart</h2>
+    <div *ngIf="cartItems.length === 0">
+        <p>Your cart is empty. <a routerLink="/application/products">Start shopping!</a></p>
+        <hr>
+    </div>
+    <div class="feedback" *ngIf="feedbackMessage" [ngClass]="{
+      'feedback-add': feedbackMessageType === 'add',
+      'feedback-remove': feedbackMessageType === 'remove',
+      'feedback-clear': feedbackMessageType === 'clear',
+      'fade-out': feedbackMessageType === 'fade-out'
+    }">
+        <p>{{ feedbackMessage }}</p>
+    </div>
+    <div *ngIf="cartItems.length > 0">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Product Image</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of cartItems">
+                    <td><img [src]="item.imageUrl" alt="{{ item.name }}" class="cart-image"></td>
+                    <td>{{ item.name }}</td>
+                    <td>${{ item.price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>
+                        <button class="btn btn-secondary" (click)="removeFromCart(item)">-</button>
+                        <button class="btn btn-secondary ml-2" (click)="addToCart(item)">+</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h4>Total: {{ getTotal() }}</h4>
+            </div>
+            <div>
+                <button class="btn btn-warning" (click)="clearAllItems()">Clear Cart</button>
+                <button class="btn btn-success ml-2">Checkout</button>
+            </div>
+        </div>
+    </div>
+</div>
